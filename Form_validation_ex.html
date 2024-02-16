@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form name="formData" action="/Javascript/Arrays/array_demo.html" onsubmit="return f1() ">
+        Enter name: <input type="text" name="uname" ><br><br>
+        Enter email: <input type="email" name="uemail" ><br><br>
+        <button>Submit</button>
+
+       </form>
+       <script>
+             function f1()
+             {
+                let n=document.forms["formData"]["uname"].value;
+                if(n=="")
+                {
+                    alert("name must not be empty...");
+                    return false;
+                }
+             }
+       </script>
+</body>
+</html>

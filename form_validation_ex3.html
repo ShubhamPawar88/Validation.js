@@ -1,0 +1,177 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <title>Form validation</title>
+    <style>
+      
+
+      body {
+        padding: 10px 50px;
+      }
+
+      .formdesign {
+        font-size: 20px;
+      }
+
+      .formdesign input {
+        width: 50%;
+        padding: 12px 20px;
+        margin: 14px;
+        border: 1px solid aqua;
+        border-radius: 4px;
+        font-size: 15px;
+      }
+
+      .formerror {
+        color: red;
+      }
+
+ .but {
+  padding: 17px 40px;
+  border-radius: 50px;
+  cursor: pointer;
+  border: 0;
+  background-color: rgb(245, 224, 224);
+  box-shadow: rgb(0 0 0 / 5%) 0 0 8px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  font-size: 15px;
+  transition: all 0.5s ease;
+}
+
+.but:hover {
+  letter-spacing: 3px;
+  background-color: hsl(170, 80%, 48%);
+  color: hsl(0, 2%, 28%);
+  box-shadow: rgb(93 24 220) 0px 7px 29px 0px;
+}
+
+.but:active {
+  letter-spacing: 3px;
+  background-color: hsl(261deg 80% 48%);
+  color: hsl(0, 0%, 100%);
+  box-shadow: rgb(93 24 220) 0px 0px 0px 0px;
+  transform: translateY(10px);
+  transition: 100ms;
+}
+
+form{
+  background-color: lightskyblue;
+  width: 400px;
+  padding: 50px 40px;
+  position: absolute;
+  transform: translate(-50%,-50%);
+  top: 50%;
+  left: 50%;
+  box-shadow: 20px 80px 30px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+input{
+  display: flex;
+}
+
+    </style>
+  </head>
+<body>
+    <!-- <h1>Registration form</h1> -->
+    <form action="/Javascript/Loops/break_statement.html" name="myForm" onsubmit="return validateForm()">
+      <h1>Registration form</h1>
+
+      <div class="formdesign" id="name">
+        Name: <input type="text" name="fname" required placeholder="Enter Your Full Name"/><b>
+        <span class="formerror"></span> </b>
+      </div>
+
+      <div class="formdesign" id="email">
+        Email: <input type="email" name="femail" required placeholder="email@domain.com"/><b>
+        <span class="formerror"></span> </b>
+      </div>
+
+      <div class="formdesign" id="phone">
+        Phone No.: <input type="text" name="fphone" required placeholder="Enter Your 10 digit phone no." inputmode="numeric" pattern="[0-9]+"/><b>
+        <span class="formerror"></span> </b>
+      </div>
+
+      <div class="formdesign" id="pass">
+        Password: <input type="password" name="fpass" required placeholder="Enter Your unique password"/><b>
+        <span class="formerror"></span> </b>
+      </div>
+
+      <div class="formdesign" id="cpass">
+        Confirm Password: <input type="password" name="fcpass" required placeholder="Please confrim you password"/><b>
+        <span class="formerror"></span> </b>
+      </div>
+
+      <input class="but" type="submit" value="Submit">
+
+    </form>  
+
+
+<script>
+
+function clearErrors(){
+
+    errors = document.getElementsByClassName('formerror');
+    for(let item of errors)
+    {
+        item.innerHTML = "";
+    }
+    }
+    
+    function seterror(id, error){
+    //sets error inside tag of id 
+    element = document.getElementById(id);
+    element.getElementsByClassName('formerror')[0].innerHTML = error;
+    }
+    
+    function validateForm(){
+    let returnval = true;
+    clearErrors();
+    
+    //perform validation and if validation fails, set the value of returnval to false
+    var name = document.forms['myForm']["fname"].value;
+    if (name.length<5){
+        seterror("name", "*Length of name is too short");
+        returnval = false;
+    }
+    
+    if (name.length == 0){
+        seterror("name", "*Length of name cannot be zero!");
+        returnval = false;
+    }
+    
+    var email = document.forms['myForm']["femail"].value;
+    if (email.length>25){
+        seterror("email", "*Email length is too long");
+        returnval = false;
+    }
+    
+    var phone = document.forms['myForm']["fphone"].value;
+    if (phone.length != 10){
+        seterror("phone", "*Phone number should be of 10 digits!");
+        returnval = false;
+    }
+    
+    var password = document.forms['myForm']["fpass"].value;
+    if (password.length < 6){
+    
+        seterror("pass", "*Password should be atleast 6 characters long!");
+        returnval = false;
+    }
+    
+    var cpassword = document.forms['myForm']["fcpass"].value;
+    if (cpassword != password){
+        seterror("cpass", "*Password and Confirm password should match!");
+        returnval = false;
+    }
+    
+    return returnval;
+    }
+</script>
+   </body>
+
+   </html>

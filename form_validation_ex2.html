@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .myCls{
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <form name="formData" action="/Javascript/Arrays/array_demo.html" 
+           onsubmit="return f1()">
+       <div id="name1">
+        Name: <input type="text" name="uname"><br>
+        <span class="myCls"></span>
+       </div>   
+       <br>
+       <div id="email1">
+        Email: <input type="text" name="uemail"><br>
+        <span class="myCls"></span>
+       </div>
+       <br>
+       <div id="pass1">
+        Password: <input type="password" name="upass"><br>
+        <span class="myCls"></span>
+       </div>
+       <br>
+       <div id="cpass1">
+       Confirm Password: <input type="password" name="ucpass"><br>
+        <span class="myCls"></span>
+       </div>
+       <br>
+       <div id="age">
+        Age: <input type="text" name="uage"><br>
+         <span class="myCls"></span>
+        </div>
+        <br>
+        <div id="ph">
+            Phone Number: <input type="text" name="uph"><br>
+             <span class="myCls"></span>
+            </div>
+            <br>
+          <button>Submit</button>
+    </form>
+       <script>
+             function f1()
+             {
+                let returnval=true;
+                let n=document.forms["formData"]["uname"].value;
+                if(n.length<5)
+                {
+                    seterror("name1","*length of name must be grater than 5....");
+                    returnval=false;
+                }
+                let em=document.forms["formData"]["uemail"].value;
+                if(em.length>25 || !(em.includes("@")))
+                  {
+                    seterror("email1","* mail id must contain @ symbol or having email address must be less than 25");  
+                    returnval=false;
+                   }
+                   let up=document.forms["formData"]["upass"].value;
+                if(up.length<8)
+                  {
+                    seterror("pass1","* password must be graeter then 8 characters");  
+                    returnval=false;
+                   }
+                   let cp=document.forms["formData"]["ucpass"].value;
+                if(up!=cp)
+                  {
+                    seterror("cpass1","*  confirm password shoud match with  original password");  
+                    returnval=false;
+                  }
+                  //isNaN() is used to check whether given entered value is number or not, if it is not a number thrn it returns true
+
+                  let ag=document.forms["formData"]["uage"].value;
+                if(isNaN(ag))
+                  {
+                    seterror("age","*  please enter numeric value....");  
+                    returnval=false;
+                  }
+                  let ph1=document.forms["formData"]["uph"].value;
+                if(ph1.length!=10)
+                  {
+                    seterror("ph","*  please enter valid 10 digits phone no....");  
+                    returnval=false;
+                  }
+                return returnval;
+             }
+             function seterror(id,error)
+             {
+                let i=document.getElementById(id);
+                i.getElementsByClassName("myCls")[0].innerHTML=error;
+               
+             }
+       </script>
+</body>
+</html>
